@@ -1,0 +1,8 @@
+section.product-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  place-items: center;
+  width: 100%;
+}

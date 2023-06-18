@@ -1,0 +1,41 @@
+section.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 10px;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      transition: transform 0.3s;
+
+      &:hover {
+        text-decoration: underline;
+        transform: scale(1.2);
+      }
+
+      &.actual-page {
+        background-color: aliceblue;
+        color: black;
+        font-weight: bold;
+        cursor: default;
+
+        &:hover {
+          text-decoration: none;
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+main#home {
+  display: flex;
+
+  & > section {
+    width: 100%;
+    margin: 20px;
+
+    & section:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+nav#navbar {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: #11421c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  z-index: 3;
+
+  ul.social-media {
+    display: flex;
+    position: absolute;
+    right: 0;
+    margin-right: 25px;
+
+    li {
+      margin: 0 10px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: color 0.5s ease-out;
+
+      &:hover {
+        color: #ffd700;
+      }
+
+      & a {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  & > a {
+    position: relative;
+    top: 14px;
+
+    h1 {
+      display: none;
+    }
+  }
+}

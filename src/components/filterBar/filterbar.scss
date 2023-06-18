@@ -1,0 +1,66 @@
+#filter-bar {
+  width: 200px;
+  border-right: 1px solid grey;
+  position: sticky;
+  top: 60px;
+  z-index: 1;
+  height: calc(100vh - 60px);
+  padding: 20px 0px;
+
+  & h3 {
+    margin-bottom: 20px;
+    margin-left: 10px;
+  }
+
+  & .filter-section {
+    border-bottom: 1px solid grey;
+    padding: 10px;
+    transition: max-height 0.3s ease-in;
+    max-height: 46px;
+    overflow: hidden;
+
+    &.open {
+      max-height: 500px;
+    }
+
+    &:first-child {
+      border-top: 1px solid grey;
+    }
+
+    & .filter-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+
+      & svg {
+        transition: rotate 0.3s ease-out;
+
+        &.open {
+          rotate: 180deg;
+        }
+      }
+    }
+
+    & .filter-section-content {
+      padding-top: 10px;
+
+      & li {
+        padding: 3px 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          background-color: rgba($color: #959595, $alpha: 0.3);
+        }
+
+        & img,
+        & svg {
+          width: 25px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
