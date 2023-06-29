@@ -2,7 +2,10 @@ import { formatPrice } from "../utils/product";
 import { HOME_URL, PARSER, $ } from "../utils/consts";
 
 export const getProductsByPage = async (page, url = HOME_URL) => {
-  const request = await window.fetch(`${url}${page}`);
+  const request = await window.fetch(`${url}${page}`, {
+    method: "GET",
+    mode: "cors",
+  });
   const response = await request.text();
   const document = PARSER.parseFromString(response, "text/html");
 
