@@ -33,11 +33,12 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [collection, setCollection] = useState(HOME_URL);
   const [products, setProducts] = useState([]);
-  const [lastPage, setLastPage] = useState(1);
+  const [lastPage] = useState(1);
   const [title, setTitle] = useState("");
   const [loader, setLoader] = useState(false);
+  const limit = 18;
 
-  const handlefetch = async (from) => {
+  const handlefetch = async () => {
     setLoader(true);
     try {
       setTimeout(() => {
@@ -45,14 +46,12 @@ const Home = () => {
           top: 0,
         });
       }, 5);
-      const [productsList, pagination] = await getProductsByPage(
-        page,
-        collection
-      );
-      setProducts(productsList);
-      from === "collection" &&
-        pagination != lastPage &&
-        setLastPage(pagination);
+      const { data } = await getProductsByPage(page, collection, limit);
+      console.log("DATA ===> ", data);
+      setProducts(data);
+      // from === "collection" &&
+      //   pagination != lastPage &&
+      //   setLastPage(count / limit);
     } catch (error) {
       console.log(error);
     } finally {
@@ -63,7 +62,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    handlefetch("page");
+    handlefetch();
   }, [page]);
 
   useEffect(() => {

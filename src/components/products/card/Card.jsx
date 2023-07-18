@@ -2,11 +2,12 @@ import "./card.scss";
 
 const ProductCard = (props) => {
   const { product } = props;
-  const { team, label, img, name, sku, price, priceSale } = product;
+  const { team, label, imgs, name, price, priceSale, sizes } = product;
+  const sku = sizes[0].sku;
 
   return (
     <article className={`product-card ${label === "Sold Out" && "sold-out"}`}>
-      <img width="300" src={img} />
+      <img width="300" src={imgs[0]} />
       <ul>
         <li>
           <p>
@@ -17,7 +18,7 @@ const ProductCard = (props) => {
           <h2>{name}</h2>
         </li>
         <li className="details">
-          <p className="sku">{`SKU: ${sku}`}</p>
+          <p className="sku">{/*`SKU: ${sku}`*/}</p>
           <div className="price-container">
             <p className={`price ${price !== priceSale && "on-sale"}`}>
               {price}

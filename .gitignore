@@ -52,4 +52,4 @@ sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/react,macos
 
-./libs/firebase.js
+**/libs/firebase.js
