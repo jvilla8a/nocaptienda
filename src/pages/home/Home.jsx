@@ -47,7 +47,6 @@ const Home = () => {
         });
       }, 5);
       const { data } = await getProductsByPage(page, collection, limit);
-      console.log("DATA ===> ", data);
       setProducts(data);
       // from === "collection" &&
       //   pagination != lastPage &&
