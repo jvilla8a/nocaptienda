@@ -2,7 +2,7 @@ import {
   BiChevronsLeft,
   BiChevronLeft,
   BiChevronRight,
-  BiChevronsRight,
+  // BiChevronsRight,
 } from "react-icons/bi";
 
 import "./pagination.scss";
@@ -39,9 +39,9 @@ const Pager = (props) => {
           <li onClick={() => page + 1 <= lastPage && handleClick(page + 1)}>
             <BiChevronRight size={30} />
           </li>
-          <li onClick={() => page !== lastPage && handleClick(lastPage)}>
+          {/* <li onClick={() => page !== lastPage && handleClick(lastPage)}>
             <BiChevronsRight size={30} />
-          </li>
+          </li> */}
         </ul>
       )}
     </section>

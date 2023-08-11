@@ -1,15 +1,28 @@
 #filter-bar {
-  width: 200px;
   border-right: 1px solid grey;
   position: sticky;
   top: 60px;
   z-index: 1;
   height: calc(100vh - 60px);
   padding: 20px 0px;
+  width: 200px;
+  transition: width 0.5s ease-in;
+  overflow: hidden;
 
-  & h3 {
-    margin-bottom: 20px;
-    margin-left: 10px;
+  &.closed {
+    width: 0px;
+    border: 0px;
+  }
+
+  & .filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 10px 20px;
+
+    & svg {
+      cursor: pointer;
+    }
   }
 
   & .filter-section {
@@ -59,6 +72,36 @@
         & svg {
           width: 25px;
           margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    position: absolute;
+    width: 100%;
+    background-color: #242424;
+    border: 0;
+
+    & .filter-header {
+      margin-top: 10px;
+      font-size: 24px;
+    }
+
+    & .filter-section {
+      padding: 20px 10px;
+      max-height: 72px;
+
+      & h4 {
+        font-size: 20px;
+      }
+
+      & .filter-section-content {
+        padding-top: 15px;
+
+        & li {
+          padding: 5px;
+          font-size: 18px;
         }
       }
     }

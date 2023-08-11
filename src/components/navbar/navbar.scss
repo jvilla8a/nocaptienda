@@ -41,4 +41,17 @@ nav#navbar {
       display: none;
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    justify-content: start;
+
+    & > a {
+      margin-left: 20px;
+
+      & svg {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
 }

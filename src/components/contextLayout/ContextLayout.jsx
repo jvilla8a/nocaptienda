@@ -8,6 +8,7 @@ const ContextLayout = (props) => {
   const [products, setProducts] = useState([]);
   const [lastPage, setLastPage] = useState(1);
   const [loader, setLoader] = useState(false);
+  const [filterBarOpen, setFilterBarOpen] = useState(false);
 
   return (
     <Context.Provider
@@ -18,6 +19,8 @@ const ContextLayout = (props) => {
         setProducts,
         lastPage,
         setLastPage,
+        filterBarOpen,
+        setFilterBarOpen,
       }}
     >
       {children}

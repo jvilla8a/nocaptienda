@@ -18,7 +18,7 @@ const ProductCard = (props) => {
           <h2>{name}</h2>
         </li>
         <li className="details">
-          <p className="sku">{/*`SKU: ${sku}`*/}</p>
+          <p className="sku">{`Cod: ${sku}`}</p>
           <div className="price-container">
             <p className={`price ${price !== priceSale && "on-sale"}`}>
               {price}
