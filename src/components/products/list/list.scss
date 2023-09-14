@@ -5,8 +5,13 @@ section.product-list {
   grid-row-gap: 20px;
   place-items: center;
   width: 100%;
+  padding: 20px 0;
 
   @media only screen and (max-width: 600px) {
     grid-template-columns: 1fr;
+  }
+
+  @media only screen and (min-width: 600px) and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

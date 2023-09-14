@@ -1,43 +1,55 @@
-import {
-  collection,
-  query,
-  getCountFromServer,
-  limit,
-  getDocs,
-  startAfter,
-  orderBy,
-  where,
-} from "firebase/firestore";
-import { db } from "../libs/firebase";
+import supabase from "../libs/supabase";
 
-export const getProductsByPage = async (page, perPage, type, typeValue) => {
-  let products = [];
-  const coll = collection(db, "products");
+export const getProducts = async (page, filter, filterValue) => {
+  try {
+    const upper = 18 * page - 1;
+    const lower = 18 * (page - 1);
 
-  const allProductsQ =
-    type && typeValue ? query(coll, where(type, "==", typeValue)) : query(coll);
-  const snapshotAllProducts = await getCountFromServer(allProductsQ);
-  const start = (page - 1) * perPage;
-  console.log("START ==> ", start);
+    const request = await getCaps(lower, upper, filter, filterValue);
+    const count = await getCounts(filter, filterValue);
+    request.count = count?.data[0]?.result;
 
-  const productsQ =
-    type && typeValue
-      ? query(
-          coll,
-          where(type, "==", typeValue),
-          orderBy("position", "asc"),
-          startAfter(start),
-          limit(18)
-        )
-      : query(coll, orderBy("position", "asc"), startAfter(start), limit(18));
+    let images = request.data.map(async (cap) => {
+      const image = await getProductMainImage(cap.code);
 
-  const snapshotProducts = await getDocs(productsQ);
-  snapshotProducts.forEach((doc) => {
-    products.push(doc.data());
+      cap.image = image;
+    });
+
+    await Promise.all(images);
+    return request;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const getProductMainImage = async (id) => {
+  const request = await supabase
+    .from("images")
+    .select(`image_url, cap_code`)
+    .eq("cap_code", id)
+    .order("image_id", { ascending: true })
+    .limit(1);
+
+  return request.data[0]?.image_url;
+};
+
+const getCounts = async (filter, filterValue) => {
+  const request = await supabase.rpc("get_counts", {
+    filter: filter,
+    filter_value: filterValue,
   });
 
-  return {
-    data: products,
-    count: snapshotAllProducts.data().count,
-  };
+  return request;
+};
+
+const getCaps = async (lower, upper, filter, filterValue) => {
+  const request = await supabase
+    .rpc("get_caps", {
+      filter: filter,
+      filter_value: filterValue,
+    })
+    .order("position", { ascending: true })
+    .range(lower, upper);
+
+  return request;
 };

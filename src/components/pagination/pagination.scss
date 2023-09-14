@@ -1,7 +1,6 @@
 section.pagination {
   display: flex;
   justify-content: center;
-  margin: 20px;
 
   ul {
     margin: 0;
@@ -37,9 +36,5 @@ section.pagination {
         }
       }
     }
-  }
-
-  @media only screen and (max-width: 600px) {
-    margin: 20px 0;
   }
 }

@@ -1,19 +1,22 @@
 nav#navbar {
   width: 100%;
-  position: sticky;
+  position: fixed;
   top: 0;
-  background-color: #11421c;
-  display: flex;
+  background-color: #08200d;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 60px;
   z-index: 3;
+  display: none;
+  padding: 20px;
+
+  & > svg {
+    cursor: pointer;
+  }
 
   ul.social-media {
     display: flex;
-    position: absolute;
-    right: 0;
-    margin-right: 25px;
 
     li {
       margin: 0 10px;
@@ -35,7 +38,7 @@ nav#navbar {
 
   & > a {
     position: relative;
-    top: 14px;
+    top: 20px;
 
     h1 {
       display: none;
@@ -43,7 +46,7 @@ nav#navbar {
   }
 
   @media only screen and (max-width: 600px) {
-    justify-content: start;
+    display: flex;
 
     & > a {
       margin-left: 20px;

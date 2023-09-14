@@ -47,14 +47,29 @@ const useTitle = () => {
       case "CASUAL CLASSIC":
         setTitle("CASUAL CLASSIC");
         break;
-      case "MLB PROPERTIES":
+      case "MLB":
         setTitle("MLB");
         break;
-      case "NFL PROPERTIES":
+      case "NFL":
         setTitle("NFL");
         break;
-      case "NBA PROPERTIES":
+      case "NBA":
         setTitle("NBA");
+        break;
+      case "COLLEGIATE":
+        setTitle("Universitario");
+        break;
+      case "Sale":
+        setTitle("Ofertas");
+        break;
+      case "GOLF":
+        setTitle("Golf");
+        break;
+      case "WNBA ENTERPRISES":
+        setTitle("WNBA");
+        break;
+      case "MINOR LEAGUE":
+        setTitle("MiLB");
         break;
       default:
         setTitle("");

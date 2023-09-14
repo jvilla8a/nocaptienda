@@ -1,42 +1,40 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { getProductsByPage } from "../../api/products";
+import { getProducts } from "../../api/products";
+import { calculateURL, scrollToTop } from "../../utils";
 import ProductCard from "../../components/products/card";
 import ProductsList from "../../components/products/list";
 import Pagination from "../../components/pagination";
 import Filterbar from "../../components/filterBar";
 import Loader from "../../components/loader";
 import useTitle from "../../hooks/useTitle";
+import Navbar from "../../components/navbar";
 import "./home.scss";
 
 const Home = () => {
-  const [page, setPage] = useState(1);
+  const limit = 18;
+  const url = new URL(window.location.href);
+  const urlPage = parseInt(url?.searchParams?.get("page"));
+  const navigate = useNavigate();
+
+  const [page, setPage] = useState(urlPage || 1);
   const [products, setProducts] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loader, setLoader] = useState(false);
   const [filter, setFilter] = useState(null);
   const [filterValue, setFilterValue] = useState(null);
   const [title, updateTitle] = useTitle();
-  const limit = 18;
 
   const handlefetch = async () => {
     setLoader(true);
     try {
-      setTimeout(() => {
-        window.scrollTo({
-          top: 0,
-        });
-      }, 5);
-      const { data, count } = await getProductsByPage(
-        page,
-        limit,
-        filter,
-        filterValue
-      );
+      scrollToTop();
+      const { data, count } = await getProducts(page, filter, filterValue);
       setProducts(data);
       setTotalCount(count);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     } finally {
       setTimeout(() => {
         setLoader(false);
@@ -45,25 +43,24 @@ const Home = () => {
   };
 
   const handleFilter = (type, value) => {
+    setPage(1);
     setFilter(type);
     setFilterValue(value);
   };
 
   useEffect(() => {
-    handlefetch();
-  }, [page]);
-
-  useEffect(() => {
-    handlefetch();
-    setPage(1);
+    const newURL = calculateURL(page, filter, filterValue);
+    navigate(newURL);
     updateTitle(filterValue);
-  }, [filter, filterValue]);
+    handlefetch();
+  }, [page, filter, filterValue]);
 
   return (
     <main id="home">
+      <Navbar />
       {loader && <Loader />}
-      <Filterbar setFilter={handleFilter} />
-      <section>
+      <Filterbar onFilterChange={handleFilter} />
+      <section id="products-container">
         <h2>
           Catálogo{title && ` - ${title} `}
           <span>{` (${totalCount})`}</span>
@@ -74,7 +71,7 @@ const Home = () => {
           page={page}
         />
         <ProductsList>
-          {products.length > 0 &&
+          {products?.length > 0 &&
             products.map((product, index) => (
               <ProductCard key={index} product={product} />
             ))}

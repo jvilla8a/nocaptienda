@@ -1,12 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import {
-  BsFacebook,
-  BsInstagram,
-  BsWhatsapp,
-  BsFilterCircleFill,
-  BsXCircleFill,
-} from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
+import { IoMenu } from "react-icons/io5";
 
 import Context from "../../utils/context";
 import Logo from "../../assets/logo.png";
@@ -17,25 +12,19 @@ const Navbar = () => {
 
   return (
     <nav id="navbar">
+      <IoMenu size={24} onClick={() => setFilterBarOpen(!filterBarOpen)} />
       <Link to="/">
         <h1>NoCap</h1>
         <img src={Logo} alt="NoCap Logo" width={80} />
       </Link>
       <ul className="social-media">
-        <li onClick={() => setFilterBarOpen(!filterBarOpen)}>
-          {!filterBarOpen ? (
-            <BsFilterCircleFill size={24} />
-          ) : (
-            <BsXCircleFill size={24} />
-          )}
-        </li>
         <li>
           <a
             href="https://www.facebook.com/profile.php?id=100093003182934&mibextid=LQQJ4d"
             target="_blank"
             rel="noreferrer"
           >
-            <BsFacebook size={24} />
+            <BsFacebook size={20} />
           </a>
         </li>
         <li>
@@ -44,7 +33,7 @@ const Navbar = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <BsInstagram size={24} />
+            <BsInstagram size={20} />
           </a>
         </li>
         <li>
@@ -53,7 +42,7 @@ const Navbar = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <BsWhatsapp size={24} />
+            <BsWhatsapp size={20} />
           </a>
         </li>
       </ul>

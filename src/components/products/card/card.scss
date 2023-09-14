@@ -1,5 +1,6 @@
 article.product-card {
-  max-width: 400px;
+  // max-width: 350px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -73,9 +74,6 @@ article.product-card {
 
   @media only screen and (max-width: 600px) {
     ul {
-      h2 {
-      }
-
       li {
         p {
           font-size: 14px;
@@ -92,6 +90,27 @@ article.product-card {
             font-size: 12px;
           }
         }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    ul {
+      & li.details {
+        flex-direction: row;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 600px) and (max-width: 768px) {
+    ul {
+      & h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      & li.details {
+        flex-direction: column;
       }
     }
   }

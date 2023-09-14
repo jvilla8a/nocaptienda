@@ -4,11 +4,14 @@ import Context from "../../utils/context";
 
 const ContextLayout = (props) => {
   const { children } = props;
+  const width = window.innerWidth;
 
   const [products, setProducts] = useState([]);
   const [lastPage, setLastPage] = useState(1);
   const [loader, setLoader] = useState(false);
-  const [filterBarOpen, setFilterBarOpen] = useState(false);
+  const [filterBarOpen, setFilterBarOpen] = useState(
+    width <= 600 ? false : true
+  );
 
   return (
     <Context.Provider
