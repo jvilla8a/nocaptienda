@@ -12,5 +12,6 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
     ],
+    errorElement: <h2>SOMETHING WENT WRONG</h2>,
   },
 ]);
