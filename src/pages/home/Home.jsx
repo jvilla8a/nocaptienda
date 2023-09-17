@@ -18,13 +18,14 @@ const Home = () => {
   const urlPage = parseInt(url?.searchParams?.get("page"));
   const navigate = useNavigate();
 
-  const [page, setPage] = useState(urlPage || 1);
   const [products, setProducts] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loader, setLoader] = useState(false);
   const [filter, setFilter] = useState(null);
   const [filterValue, setFilterValue] = useState(null);
   const [title, updateTitle] = useTitle();
+  const lastPage = Math.ceil(totalCount / limit);
+  const [page, setPage] = useState(urlPage <= lastPage ? urlPage : 1);
 
   const handlefetch = async () => {
     setLoader(true);
@@ -65,22 +66,14 @@ const Home = () => {
           Catálogo{title && ` - ${title} `}
           <span>{` (${totalCount})`}</span>
         </h2>
-        <Pagination
-          setPage={setPage}
-          lastPage={Math.ceil(totalCount / limit)}
-          page={page}
-        />
+        <Pagination setPage={setPage} lastPage={lastPage} page={page} />
         <ProductsList>
           {products?.length > 0 &&
             products.map((product, index) => (
               <ProductCard key={index} product={product} />
             ))}
         </ProductsList>
-        <Pagination
-          setPage={setPage}
-          lastPage={Math.ceil(totalCount / limit)}
-          page={page}
-        />
+        <Pagination setPage={setPage} lastPage={lastPage} page={page} />
       </section>
     </main>
   );

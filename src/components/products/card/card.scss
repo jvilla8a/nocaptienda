@@ -74,30 +74,33 @@ article.product-card {
 
   @media only screen and (max-width: 600px) {
     ul {
+      padding: 5px 8px;
+
+      & h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
       li {
         p {
-          font-size: 14px;
+          font-size: 10px;
         }
 
         &.details {
+          flex-direction: column;
+
           & .price-container {
+            flex-direction: row;
+            column-gap: 5px;
             & p.price {
-              font-size: 28px;
+              font-size: 20px;
             }
           }
 
           & p.sku {
-            font-size: 12px;
+            font-size: 8px;
           }
         }
-      }
-    }
-  }
-
-  @media only screen and (max-width: 600px) {
-    ul {
-      & li.details {
-        flex-direction: row;
       }
     }
   }

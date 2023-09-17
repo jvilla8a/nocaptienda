@@ -48,6 +48,12 @@ nav#navbar {
   @media only screen and (max-width: 600px) {
     display: flex;
 
+    & ul.social-media {
+      li {
+        margin: 0 5px;
+      }
+    }
+
     & > a {
       margin-left: 20px;
 
