@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import "./error.scss";
 
-const Error = () => {
+const ErrorPage = () => {
   return (
     <main id="error">
       <img src={Logo} />
@@ -16,4 +16,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default ErrorPage;

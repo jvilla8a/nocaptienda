@@ -1,3 +1,3 @@
-import Error from "./error";
+import ErrorPage from "./ErrorPage";
 
-export default Error;
+export default ErrorPage;
